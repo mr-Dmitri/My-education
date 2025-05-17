@@ -77,15 +77,22 @@ class Visualization:
 
 
     def heatmap_plot(self, **qargs):
-        plt.figure(figsize=qargs.get('figsize', self.def_size))
-        data = self.df.drop(columns=['DATE_DIED']).corr()
-        sns.heatmap(data=data,
+        """
+        Тепловая карта
+
+        :param qargs:
+        :return:
+        """
+        fig, ax = plt.subplots(figsize=qargs.get('figsize', self.def_size))
+        sns.heatmap(
+                    data=qargs.get('data', None),
                     annot=True,
+                    mask=qargs.get('mask', None),
                     cmap=qargs.get('cmap', None),
                     vmin=qargs.get('vmin', None),
                     vmax=qargs.get('vmax', None),
-                    cbarlabel=qargs.get('cbarlabel', None),
-                    ax=qargs.get('ax', None),
+                    ax=ax,
+
         )
         plt.title(qargs.get('title',''))
         plt.xlabel(qargs.get('xlabel',''))
