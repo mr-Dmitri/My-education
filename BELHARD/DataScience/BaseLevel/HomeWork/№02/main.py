@@ -7,6 +7,7 @@ data_path = os.path.join(os.getcwd(), 'data')
 dataset = os.path.join(data_path, 'Covid Data.csv')
 kaggle_data_set = 'meirnizri/covid19-dataset'
 
+separator = f"\n{'-'*100}\n"
 
 if __name__ == '__main__':
     try:
@@ -16,7 +17,13 @@ if __name__ == '__main__':
 
         df.info()                                           # Информация о датафрейме (датасете)
 
-        print(df.isna().sum())                              # Отсутствующие значения в столбцах датафрейма. Можно посмотреть и в информации, но так более наглядно.
+        print(separator,
+              'Отсутствующие значения:\n',
+              df.isna().sum())                              # Отсутствующие значения в столбцах датафрейма. Можно посмотреть и в информации, но так более наглядно.
+
+        print(separator,
+              'Количество дублирующихся значений: ',
+              df.duplicated().sum())
 
         df.drop_duplicates(inplace=True)                    # Убрать дубликаты записей
 
@@ -25,7 +32,7 @@ if __name__ == '__main__':
 
 
         # sex_death_visualization(df)
-        gender_death_visualization(df)
+        # gender_death_visualization(df)
 
 
 
