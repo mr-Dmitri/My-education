@@ -17,26 +17,17 @@ class Visualization:
         :param xlabel: Подпись оси X.
         :param ylabel: Подпись оси Y.
         """
-        print(qargs)
-        fig, ax = plt.subplots()
-        ax.plot(x, y)
-        # ax.legend(qargs.get('legend'))
-        # ax.title =
-        # ax.set_xlabel(qargs.get('xlabel', ''))
-        # ax.set_ylabel(qargs.get('ylabel',''))
-        # sns.lineplot(x=x, y=y, **qargs)
-        # fig.show()
+        plt.figure(figsize=qargs.get('figsize', (8, 5)))
 
         plt.figure()
         sns.lineplot(x=self.df[x], y=self.df[y])
-        # plt.legend(['<UNK> <UNK>', '<UNK> <UNK>'])
         plt.title(qargs.get('title',''))
         plt.xlabel(qargs.get('xlabel',''))
         plt.ylabel(qargs.get('ylabel',''))
         plt.show()
 
     def count_plot(self, **qargs):
-        plt.figure(figsize=qargs.get('figsize',(8,8)))
+        plt.figure(figsize=qargs.get('figsize',(8,5)))
 
         sns.countplot(data=self.df,
                       x=qargs.get('x'),
