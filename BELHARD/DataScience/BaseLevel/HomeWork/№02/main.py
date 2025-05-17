@@ -1,6 +1,35 @@
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report, confusion_matrix
-from sklearn.preprocessing import LabelEncoder
-from loader import load_data
-from sklearn.impute import SimpleImputer
-from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+import os
+from loader import load_data_csv, load_kaggle_data_set
+from data_vizualizations import sex_death_visualization, gender_death_visualization
+
+
+data_path = os.path.join(os.getcwd(), 'data')
+dataset = os.path.join(data_path, 'Covid Data.csv')
+kaggle_data_set = 'meirnizri/covid19-dataset'
+
+
+if __name__ == '__main__':
+    try:
+        if not os.path.exists(dataset):
+            load_kaggle_data_set(kaggle_data_set)           # Загрузка файла датасета из kaggle если он не загружен
+        df = load_data_csv(dataset)                         # Загрузка файла в датафрейм
+
+        df.info()                                           # Информация о датафрейме (датасете)
+
+        print(df.isna().sum())                              # Отсутствующие значения в столбцах датафрейма. Можно посмотреть и в информации, но так более наглядно.
+
+        df.drop_duplicates(inplace=True)                    # Убрать дубликаты записей
+
+        df.loc[df.DATE_DIED == '9999-99-99', 'DIED'] = 0    # Признак выживания (Считаем, что выжил, т.к. отсутствует дата смерти)
+        df.loc[df.DATE_DIED != '9999-99-99', 'DIED'] = 1    # Признак смерти
+
+
+        # sex_death_visualization(df)
+        gender_death_visualization(df)
+
+
+
+
+    except Exception as e:
+        print(f'При выполнении произошла ошибка: {e}')
+
