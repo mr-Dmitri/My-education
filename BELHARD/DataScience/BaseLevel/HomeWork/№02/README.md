@@ -8,9 +8,6 @@
 
 ## Порядок запуска
 1. Скачать файлы 
-2. Установить зависимости `pip install -r requirements.txt`
-```
-
-```
+2. Установить зависимости: `pip install -r requirements.txt `
 
 
