@@ -1,5 +1,6 @@
-import matplotlib.pyplot as plt
+import numpy as np
 import seaborn as sns
+import matplotlib.pyplot as plt
 
 class Visualization:
     def __init__(self, data_frame):
@@ -28,6 +29,12 @@ class Visualization:
         plt.show()
 
     def count_plot(self, **qargs):
+        """
+        Столбчатуая диаграмма
+
+        :param qargs:
+        :return:
+        """
         plt.figure(figsize=qargs.get('figsize',self.def_size))
 
         sns.countplot(data=self.df,
@@ -43,6 +50,11 @@ class Visualization:
 
 
     def hist_plot(self, **qargs):
+        """
+        Гистограмма
+        :param qargs:
+        :return:
+        """
         plt.figure(figsize=qargs.get('figsize', self.def_size))
 
         sns.histplot(data=self.df,
@@ -57,5 +69,27 @@ class Visualization:
         plt.xlabel(qargs.get('xlabel',''))
         plt.ylabel(qargs.get('ylabel',''))
         plt.legend (qargs.get('legend',[]))
+        plt.show()
+
+
+    def bar_plot(self, **qargs):
+        plt.figure(figsize=qargs.get('figsize', self.def_size))
+
+
+    def heatmap_plot(self, **qargs):
+        plt.figure(figsize=qargs.get('figsize', self.def_size))
+        data = self.df.drop(columns=['DATE_DIED']).corr()
+        sns.heatmap(data=data,
+                    annot=True,
+                    cmap=qargs.get('cmap', None),
+                    vmin=qargs.get('vmin', None),
+                    vmax=qargs.get('vmax', None),
+                    cbarlabel=qargs.get('cbarlabel', None),
+                    ax=qargs.get('ax', None),
+        )
+        plt.title(qargs.get('title',''))
+        plt.xlabel(qargs.get('xlabel',''))
+        plt.ylabel(qargs.get('ylabel',''))
+
         plt.show()
 
