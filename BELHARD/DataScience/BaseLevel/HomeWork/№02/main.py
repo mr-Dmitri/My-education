@@ -1,6 +1,6 @@
 import os
 from loader import load_data_csv, load_kaggle_data_set
-from data_vizualizations import sex_death_visualization, age_death_visualization
+from data_vizualizations import sex_death_visualization, age_death_visualization, correlation_visualization
 
 data_path = os.path.join(os.getcwd(), 'data')
 dataset = os.path.join(data_path, 'Covid Data.csv')
@@ -26,13 +26,16 @@ if __name__ == '__main__':
 
         df.drop_duplicates(inplace=True)                    # Убрать дубликаты записей
 
+        print(separator,
+              'Статистика по датасету:\n',
+              df.describe())
+
         df.loc[df.DATE_DIED == '9999-99-99', 'DIED'] = 0    # Признак выживания (Считаем, что выжил, т.к. отсутствует дата смерти)
         df.loc[df.DATE_DIED != '9999-99-99', 'DIED'] = 1    # Признак смерти
 
 
         # sex_death_visualization(df)
-        age_death_visualization(df)
-
+        # age_death_visualization(df)
 
 
 
