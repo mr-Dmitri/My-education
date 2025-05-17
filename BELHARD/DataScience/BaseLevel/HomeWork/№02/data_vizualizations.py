@@ -14,23 +14,16 @@ def sex_death_visualization(df):
                                  title ='Количество умерших по гендерному признаку.',
                                  ylabel = 'Количество умерших',
                                  legend = ['мужской','женский'],
-                                 hue = 'DIED',
-                                 figsize=(8, 5)
+                                 hue = 'DIED'
     )
 
-def gender_death_visualization(df):
+def age_death_visualization(df):
     """
     Визуализация смертности по возрасту
     :param df:
     :return:
     """
 
-    # Визуализация смертности по возрасту
-    Visualization(df).count_plot(x='DIED',
-                                 title='Количество умерших по возрасту.',
-                                 ylabel='Количество умерших',
-                                 legend=['мужской', 'женский'],
-                                 hue='AGE',
-                                 figsize=(8, 5)
-    )
+    Visualization(df).hist_plot(x='AGE', bins=12)
+
 

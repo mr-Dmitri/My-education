@@ -1,7 +1,6 @@
 import os
 from loader import load_data_csv, load_kaggle_data_set
-from data_vizualizations import sex_death_visualization, gender_death_visualization
-
+from data_vizualizations import sex_death_visualization, age_death_visualization
 
 data_path = os.path.join(os.getcwd(), 'data')
 dataset = os.path.join(data_path, 'Covid Data.csv')
@@ -32,7 +31,7 @@ if __name__ == '__main__':
 
 
         # sex_death_visualization(df)
-        # gender_death_visualization(df)
+        age_death_visualization(df)
 
 
 
