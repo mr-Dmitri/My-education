@@ -11,8 +11,8 @@ def load_data_csv(file_path):
     """
     try:
         return pd.read_csv(file_path)
-    except:
-        return None
+    except Exception as e:
+        raise Exception(e)
 
 def load_kaggle_data_set(dataset):
     """
