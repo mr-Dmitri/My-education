@@ -6,7 +6,7 @@ class Visualization:
         self.df = data_frame
         self.def_size = (8,5)
 
-    def line_plot(self, x, y, **qargs) -> None:
+    def line_plot(self, **qargs) -> None:
         """
         Линейный график
         Входные переменные данных; должны быть числовыми.
@@ -19,9 +19,7 @@ class Visualization:
         :param ylabel: Подпись оси Y.
         """
         plt.figure(figsize=qargs.get('figsize', self.def_size))
-
-        plt.figure()
-        sns.lineplot(x=self.df[x], y=self.df[y])
+        sns.lineplot(x=qargs.get('x'), y=qargs.get('y'))
         plt.title(qargs.get('title',''))
         plt.xlabel(qargs.get('xlabel',''))
         plt.ylabel(qargs.get('ylabel',''))
@@ -29,7 +27,7 @@ class Visualization:
 
     def count_plot(self, **qargs):
         """
-        Столбчатуая диаграмма
+        Столбчатая диаграмма
 
         :param qargs:
         :return:
