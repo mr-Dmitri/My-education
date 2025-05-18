@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 from visualizations import Visualization
 
 
@@ -91,4 +92,15 @@ def medical_unit_visualization(df):
                                          xlabel= 'Результаты теста на covid\n1...3 - у пациента был диагностирован covid в разной степени;\n4 или выше - пациент не является носителем covid или тест не дал результатов.',
                                          ylabel= 'Возраст'
         )
-
+def date_died_visualization(df):
+    df_temp = df[df['DATE_DIED'] != '9999-99-99'][['DATE_DIED', 'DIED']]
+    df_temp['DATE_DIED'] = pd.to_datetime(df_temp['DATE_DIED'], format='mixed')
+    df_temp = df_temp.groupby('DATE_DIED').sum().reset_index()
+    df_temp = df_temp.sort_values(by='DATE_DIED', ascending=True)
+    Visualization(df).line_plot(title='График количества смертей за период наблюдения',
+                                y=df_temp['DIED'],
+                                x=df_temp['DATE_DIED'],
+                                figsize=(20, 7),
+                                xlabel='Дата',
+                                ylabel='Количество умерших'
+    )
