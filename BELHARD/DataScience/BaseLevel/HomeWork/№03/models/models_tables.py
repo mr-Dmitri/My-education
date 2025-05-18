@@ -60,3 +60,23 @@ class Patient(Base):
     RoomNumber = Column(Integer)
     DischargeDate = Column(Date)
     LengthOfStay = Column(Integer)
+
+class DataSet(Base):
+    __tablename__ = 'dataset'
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    Name = Column(String)
+    Age = Column(Integer)
+    Gender = Column(String)
+    BloodType = Column(String)
+    MedicalCondition = Column(String)
+    DateOfAdmission = Column(Date)
+    Doctor = Column(String)
+    Hospital = Column(String)
+    InsuranceProvider = Column(String)
+    BillingAmount = Column(Float)
+    RoomNumber = Column(Integer)
+    AdmissionType = Column(String)
+    DischargeDate = Column(Date)
+    Medication = Column(String)
+    TestResults = Column(String)
+    LengthOfStay = Column(Integer)
