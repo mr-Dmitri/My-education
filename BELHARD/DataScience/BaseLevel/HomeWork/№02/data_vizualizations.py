@@ -70,3 +70,28 @@ def death_visualization(df):
                                autopct ='%1.2f%%',
                                figsize=(5,5)
     )
+
+def d_visualization(df):
+        """
+        Визуализаця результатов теста на covid в учреждении
+        Национальной системы здравоохранения типа 7
+        у пациентов в возрасте от 30 до 60 лет.
+
+        :param df:
+        :return:
+        """
+        # df_f = df[(df['AGE'] == 40)]
+        # df_f = df[(df['AGE'] >= 10) & (df['AGE'] <= 15) & (df['ASTHMA'] < 90)]
+        # df_f = df[(df['AGE'] >= 40) & (df['AGE'] <= 60) & (df['CLASIFFICATION_FINAL'] > 4)]
+        df_f = df[df['MEDICAL_UNIT'] == 7 & (df['AGE'] >= 30) & (df['AGE'] <= 60)]
+        Visualization(df_f).scatter_plot(data=df,
+                                         title='Результаты теста на covid\nв учреждении '
+                                               'Национальной системы здравоохранения типа 7\n'
+                                               'у пациентов в возрасте от 30 до 60 лет',
+                                         y=df_f['AGE'],
+                                         x=df_f['CLASIFFICATION_FINAL'],
+                                         figsize=(9,7),
+                                         xlabel= 'Результаты теста на covid\n1...3 - у пациента был диагностирован covid в разной степени;\n4 или выше - пациент не является носителем covid или тест не дал результатов.',
+                                         ylabel= 'Возраст'
+        )
+
