@@ -3,8 +3,6 @@ import os
 from d_base import db_cerate
 from loader import load_data_csv, load_kaggle_data_set
 from config import dataset_path
-from datetime import date
-from models.models_tables import Patient
 from d_base import create_tables, fill_db_tabes
 
 kaggle_data_set = 'eduardolicea/healthcare-dataset'
