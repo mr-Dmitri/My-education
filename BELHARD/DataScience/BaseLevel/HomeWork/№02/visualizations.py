@@ -62,7 +62,7 @@ class Visualization:
                      y=qargs.get('y'),
                      kde=qargs.get('kde', False),
                      bins=qargs.get('bins',  'auto'),
-                     palette=qargs.get('palette', 'colorblind'),
+                     palette=qargs.get('palette'),
                      hue=self.df[qargs.get('hue')] if 'hue' in qargs else None
         )
         plt.title(qargs.get('title',''))
@@ -97,6 +97,25 @@ class Visualization:
         plt.title(qargs.get('title',''))
         plt.xlabel(qargs.get('xlabel',''))
         plt.ylabel(qargs.get('ylabel',''))
+
+        plt.show()
+
+    def pie_plot(self, **qargs):
+        """
+        Тепловая карта
+
+        :param qargs:
+        :return:
+        """
+        data = qargs.get('data', None)
+        plt.figure(figsize=qargs.get('figsize', self.def_size))
+        plt.pie(data,
+
+                labels=qargs.get('labels', None),
+                autopct=qargs.get('autopct'))
+
+        plt.title(qargs.get('title',''))
+        plt.legend(qargs.get('legend',''))
 
         plt.show()
 
