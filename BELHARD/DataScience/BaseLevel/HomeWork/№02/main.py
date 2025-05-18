@@ -1,7 +1,8 @@
 import os
 from loader import load_data_csv, load_kaggle_data_set
 from data_vizualizations import (sex_death_visualization, age_death_visualization,
-                                 correlation_visualization, death_visualization)
+                                 correlation_visualization, death_visualization,
+                                 medical_unit_visualization)
 
 data_path = os.path.join(os.getcwd(), 'data')
 dataset = os.path.join(data_path, 'Covid Data.csv')
@@ -39,7 +40,7 @@ if __name__ == '__main__':
         age_death_visualization(df)
         correlation_visualization(df)
         death_visualization(df)
-
+        medical_unit_visualization(df)
 
     except Exception as e:
         print(f'При выполнении произошла ошибка: {e}')
