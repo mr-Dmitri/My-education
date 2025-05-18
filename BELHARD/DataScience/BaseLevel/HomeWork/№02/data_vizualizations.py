@@ -9,12 +9,13 @@ def sex_death_visualization(df):
     :param df:
     :return:
     """
-
-    Visualization(df).count_plot(x='SEX',
+    df_tmp = df.copy()
+    df_tmp['SEX'] = df_tmp['SEX'].map({1: 'Женщины', 2: 'Мужчины'})
+    Visualization(df_tmp).count_plot(x='SEX',
                                  palette='colorblind',
                                  title ='Количество умерших по гендерному признаку.',
-                                 ylabel = 'Количество умерших',
-                                 legend = ['мужской','женский'],
+                                 ylabel = 'Количество',
+                                 legend = ['Выжили','Умерли'],
                                  hue = 'DIED'
     )
 
