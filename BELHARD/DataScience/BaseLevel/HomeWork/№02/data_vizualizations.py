@@ -25,7 +25,12 @@ def age_death_visualization(df):
     :return:
     """
 
-    Visualization(df).hist_plot(x='AGE', bins=12)
+    Visualization(df).hist_plot(x='AGE',
+                                bins=12,
+                                title ='Количество умерших в возрасте.',
+                                xlabel= 'Возраст',
+                                ylabel = 'Количество умерших',
+                                )
 
 
 def correlation_visualization(df):
@@ -48,3 +53,19 @@ def correlation_visualization(df):
                                    figsize = (20,15)
     )
 
+def death_visualization(df):
+    """
+    Визуализаця умерших и выживших
+
+    :param df:
+    :return:
+    """
+    data = df['DIED'].value_counts()
+    labels = list(df['DIED'].value_counts().index)
+    labels = ['Выжили' if i == 0 else 'Умерли' for i in labels]
+    Visualization(df).pie_plot(data=data,
+                               legend=labels,
+                               title='Количество умерших и выживших',
+                               autopct ='%1.2f%%',
+                               figsize=(5,5)
+    )
