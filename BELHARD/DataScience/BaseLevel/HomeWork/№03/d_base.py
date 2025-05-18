@@ -1,10 +1,7 @@
-import os
-import json
 import pandas as pd
 
 from config import db_url
 from sqlalchemy import create_engine, inspect, text
-from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from models.models_tables import Patient, Base
 
