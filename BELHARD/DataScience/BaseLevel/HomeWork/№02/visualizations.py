@@ -119,3 +119,23 @@ class Visualization:
 
         plt.show()
 
+    def scatter_plot(self, **qargs):
+        """
+        Диаграмма рассеивания
+
+        :param qargs:
+        :return:
+        """
+        plt.figure(figsize=qargs.get('figsize', self.def_size))
+
+        sns.scatterplot(data=self.df,
+                     x=qargs.get('x'),
+                     y=qargs.get('y'),
+                     palette=qargs.get('palette'),
+                     hue=self.df[qargs.get('hue')] if 'hue' in qargs else None
+                     )
+        plt.title(qargs.get('title', ''))
+        plt.xlabel(qargs.get('xlabel', ''))
+        plt.ylabel(qargs.get('ylabel', ''))
+        plt.legend(qargs.get('legend', []))
+        plt.show()
