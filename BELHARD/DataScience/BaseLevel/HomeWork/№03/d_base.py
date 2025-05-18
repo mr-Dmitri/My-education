@@ -59,11 +59,12 @@ def fill_db_tabes(df: pd.DataFrame):
     add_all_from_dataset_to_table(df, 'medications', ['Medication'])
     add_all_from_dataset_to_table(df, 'test_results', ['TestResults'])
     add_all_from_dataset_to_table(df, 'patients')
+    add_all_from_dataset_to_table(df, 'dataset')
 
 # Создам представление
 def create_view():
     drop_view = """DROP VIEW IF EXISTS view_pat"""
-    create_view = """CREATE VIEW IF NOT EXISTS view_pat AS
+    create_view = """CREATE VIEW IF NOT EXISTS view_patients AS
                      SELECT id,
                             Name
                      FROM patients
