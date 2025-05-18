@@ -98,7 +98,7 @@ def create_view():
             connection.execute(text(drop_view))
             connection.execute(text(create_view))
         except Exception as e:
-            print(f'Ошибка создания представления: {e}')
+            raise (f'Ошибка создания представления: {e}')
 
 # Вызов функции для создания представления
 create_view()
