@@ -20,7 +20,6 @@ def db_cerate():
         raise (f'Ошибка создания базы данных: {e}')
 
 def add_patient(patient : Patient):
-    print(patient)
     with Session() as session:
         try:
             session.add(patient)
@@ -63,12 +62,35 @@ def fill_db_tabes(df: pd.DataFrame):
 
 # Создам представление
 def create_view():
-    drop_view = """DROP VIEW IF EXISTS view_pat"""
-    create_view = """CREATE VIEW IF NOT EXISTS view_patients AS
-                     SELECT id,
-                            Name
-                     FROM patients
-                     WHERE Age <= 15;
+    drop_view = """DROP VIEW IF EXISTS viwe"""
+    create_view = """CREATE VIEW viwe AS
+                     SELECT dataset.id,
+                            dataset.Name,
+                            dataset.Age,
+                            genders.id AS GenderID,
+                            blood_types.id AS BloodTypeID,
+                            medical_conditions.id AS MedicalConditionID,
+                            dataset.DateOfAdmission,
+                            doctors.id AS DoctorID,
+                            hospitals.id AS HospitalID,
+                            insurance_providers.id AS InsuranceProviderID,
+                            dataset.BillingAmount,
+                            dataset.RoomNumber,
+                            admission_types.id AS AdmissionTypeID,
+                            dataset.DischargeDate,
+                            medications.id AS MedicationID,
+                            test_results.id,
+                            dataset.LengthOfStay
+                     FROM dataset
+                     JOIN genders ON genders.Gender = dataset.Gender
+                     JOIN blood_types ON blood_types.BloodType = dataset.BloodType
+                     JOIN medical_conditions ON medical_conditions.MedicalCondition = dataset.MedicalCondition
+                     JOIN doctors ON doctors.Doctor = dataset.Doctor
+                     JOIN hospitals ON hospitals.Hospital = dataset.Hospital
+                     JOIN insurance_providers ON insurance_providers.InsuranceProvider = dataset.InsuranceProvider
+                     JOIN admission_types ON admission_types.AdmissionType = dataset.AdmissionType
+                     JOIN medications ON medications.Medication = dataset.Medication
+                     JOIN test_results ON test_results.TestResults = dataset.TestResults;
     """
 
     with engine.connect() as connection:
