@@ -19,9 +19,6 @@ def db_cerate():
     except Exception as e:
         raise (f'Ошибка создания базы данных: {e}')
 
-def create_tables():
-    Base.metadata.create_all(engine)
-
 def add_patient(patient : Patient):
     print(patient)
     with Session() as session:
@@ -62,4 +59,24 @@ def fill_db_tabes(df: pd.DataFrame):
     add_all_from_dataset_to_table(df, 'medications', ['Medication'])
     add_all_from_dataset_to_table(df, 'test_results', ['TestResults'])
     add_all_from_dataset_to_table(df, 'patients')
+
+# Создам представление
+def create_view():
+    drop_view = """DROP VIEW IF EXISTS view_pat"""
+    create_view = """CREATE VIEW IF NOT EXISTS view_pat AS
+                     SELECT id,
+                            Name
+                     FROM patients
+                     WHERE Age <= 15;
+    """
+
+    with engine.connect() as connection:
+        try:
+            connection.execute(text(drop_view))
+            connection.execute(text(create_view))
+        except Exception as e:
+            print(f'Ошибка создания представления: {e}')
+
+# Вызов функции для создания представления
+create_view()
 
