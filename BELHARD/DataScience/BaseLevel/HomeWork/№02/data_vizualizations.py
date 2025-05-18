@@ -71,7 +71,7 @@ def death_visualization(df):
                                figsize=(5,5)
     )
 
-def d_visualization(df):
+def medical_unit_visualization(df):
         """
         Визуализаця результатов теста на covid в учреждении
         Национальной системы здравоохранения типа 7
@@ -80,9 +80,6 @@ def d_visualization(df):
         :param df:
         :return:
         """
-        # df_f = df[(df['AGE'] == 40)]
-        # df_f = df[(df['AGE'] >= 10) & (df['AGE'] <= 15) & (df['ASTHMA'] < 90)]
-        # df_f = df[(df['AGE'] >= 40) & (df['AGE'] <= 60) & (df['CLASIFFICATION_FINAL'] > 4)]
         df_f = df[df['MEDICAL_UNIT'] == 7 & (df['AGE'] >= 30) & (df['AGE'] <= 60)]
         Visualization(df_f).scatter_plot(data=df,
                                          title='Результаты теста на covid\nв учреждении '
