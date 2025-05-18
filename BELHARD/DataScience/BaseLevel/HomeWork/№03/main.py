@@ -3,7 +3,7 @@ import os
 from d_base import db_cerate
 from loader import load_data_csv, load_kaggle_data_set
 from config import dataset_path
-from d_base import create_tables, fill_db_tabes
+from d_base import fill_db_tabes, create_view
 
 kaggle_data_set = 'eduardolicea/healthcare-dataset'
 
@@ -42,7 +42,6 @@ if __name__ == '__main__':
 
         df.info()                                                           # Информация о датафрейме (датасете)
         db_cerate()                                                         # Создать БД
-        create_tables()                                                     # Создать таблицы в БД
         fill_db_tabes(df)                                                   # Заполнить таблицы в БД соответствующими данными из датасета (датафрейма)
 
 
