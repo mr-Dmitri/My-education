@@ -19,13 +19,6 @@ def db_cerate():
     except Exception as e:
         raise (f'Ошибка создания базы данных: {e}')
 
-def add_patient(patient : Patient):
-    with Session() as session:
-        try:
-            session.add(patient)
-            session.commit()
-        except Exception as e:
-            raise (e)
 
 def add_all_from_dataset_to_table(df: pd.DataFrame,
                                   table_name : str,
@@ -62,8 +55,8 @@ def fill_db_tabes(df: pd.DataFrame):
 
 # Создам представление
 def create_view():
-    drop_view = """DROP VIEW IF EXISTS viwe"""
-    create_view = """CREATE VIEW viwe AS
+    drop_view = """DROP VIEW IF EXISTS vw_patients"""
+    create_view = """CREATE VIEW vw_patients AS
                      SELECT dataset.id,
                             dataset.Name,
                             dataset.Age,
